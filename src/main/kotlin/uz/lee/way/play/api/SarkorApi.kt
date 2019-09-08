@@ -1,7 +1,7 @@
 package uz.lee.way.play.api
 
-import khttp.post
 import khttp.get
+import khttp.post
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -9,11 +9,11 @@ class SarkorApi {
     private lateinit var cookie: String
     private lateinit var categories: JSONArray
 
-    fun login() {
+    fun login(login: String, password: String) {
         val response = post(
             url = "http://sarkor.tv/api/user/login",
             headers = mapOf("Content-Type" to "application/json"),
-            json = mapOf("login" to "ge-7181307", "password" to "7181307")
+            json = mapOf("login" to login, "password" to password)
         )
         val obj = response.jsonObject
         if (obj.optString("status") != "ok") {

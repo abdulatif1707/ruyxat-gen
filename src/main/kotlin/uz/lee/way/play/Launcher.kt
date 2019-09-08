@@ -2,9 +2,13 @@ package uz.lee.way.play
 
 import uz.lee.way.play.api.SarkorApi
 import java.io.File
+import java.lang.RuntimeException
 
-fun main() {
-    val api = SarkorApi().apply { login() }
+fun main(args: Array<String>) {
+    if(args.size < 2){
+        throw RuntimeException("Args not found")
+    }
+    val api = SarkorApi().apply { login(args[0], args[1]) }
     val channels = api.getPlaylists()
     val file = genFile()
     val channelLength = channels.length()
